@@ -1,0 +1,3 @@
+filho_de (Claudia, Guilherme).
+Homem(Guilherme).
+Mulher(Claudia).

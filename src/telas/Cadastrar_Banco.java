@@ -1,14 +1,13 @@
 package telas;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Cadastrar_Banco extends javax.swing.JFrame {
-
+    private String sexo;
+    private String sexo_parente;
     /**
      * Creates new form Cadastrar_Banco
      */
@@ -19,6 +18,9 @@ public class Cadastrar_Banco extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -93,7 +95,7 @@ public class Cadastrar_Banco extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Filha", "Filho", "Irmã", "Irmão", "Pai", "Padastro", "Mãe", "Madrasta", "Avó", "Avô" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Filha de", "Filho de", "Irmã de", "Irmão de", "Pai de", "Mãe de", "Avó de", "Avô de" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sel_parente(evt);
@@ -206,40 +208,36 @@ public class Cadastrar_Banco extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelar
 
     private void cadastrar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrar
-        File file = new File("files/Banco_de_Dados.txt");
+        
+        if(sex_masc.isSelected()){
+            sexo = "Homem";
+        }else{
+            sexo = "Mulher";
+        }
+        
+        if(sex_parente_masc.isSelected()){
+            sexo_parente = "Homem";
+        }else{
+            sexo_parente = "Mulher";
+        }
+            
+        String arquivo = "src/files/banco_de_dados.txt";       
+        File file = new File(arquivo);
+        FileWriter fileWriter;
         try {
-            // creates the file
-            file.createNewFile();
+            fileWriter = new FileWriter(file,true);
+            try (BufferedWriter bufferFileWriter = new BufferedWriter(fileWriter)) {
+                fileWriter.append("filho_de (" + nome_parente.getText() + ", " + txt_nome.getText() + ").\n");
+                fileWriter.append(sexo + "(" + txt_nome.getText() + ").\n");
+                fileWriter.append(sexo_parente + "(" + nome_parente.getText() + ").\n");
+                
+                JOptionPane.showMessageDialog(this, "Arquivo Gravado com Sucesso !", "Aviso", JOptionPane.PLAIN_MESSAGE);
+                System.out.println("Gravado com sucesso.");
+            }
         } catch (IOException ex) {
             Logger.getLogger(Cadastrar_Banco.class.getName()).log(Level.SEVERE, null, ex);
         }
-        // creates a FileWriter Object
-        FileWriter writer = null; 
-        try {
-            writer = new FileWriter(file);
-        } catch (IOException ex) {
-            Logger.getLogger(Cadastrar_Banco.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            // Writes the content to the file
-            writer.write("TESTE\n");
-        } catch (IOException ex) {
-            Logger.getLogger(Cadastrar_Banco.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            writer.flush();
-        } catch (IOException ex) {
-            Logger.getLogger(Cadastrar_Banco.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            writer.close();
-        } catch (IOException ex) {
-            Logger.getLogger(Cadastrar_Banco.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        JOptionPane.showMessageDialog(this, "Arquivo Gravado com Sucesso !", "Aviso", JOptionPane.PLAIN_MESSAGE);
-        this.dispose();
     }//GEN-LAST:event_cadastrar
-
     private void nome_parente(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome_parente
         // TODO add your handling code here:
     }//GEN-LAST:event_nome_parente
@@ -303,6 +301,9 @@ public class Cadastrar_Banco extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cadastrar;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JButton cancelar;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
