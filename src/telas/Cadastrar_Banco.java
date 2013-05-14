@@ -208,19 +208,18 @@ public class Cadastrar_Banco extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelar
 
     private void cadastrar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrar
-        
         if(sex_masc.isSelected()){
             sexo = "Homem";
         }else{
             sexo = "Mulher";
         }
-        
+
         if(sex_parente_masc.isSelected()){
             sexo_parente = "Homem";
         }else{
             sexo_parente = "Mulher";
         }
-            
+
         String arquivo = "src/files/banco_de_dados.txt";       
         File file = new File(arquivo);
         FileWriter fileWriter;
@@ -230,7 +229,7 @@ public class Cadastrar_Banco extends javax.swing.JFrame {
                 fileWriter.append("filho_de (" + nome_parente.getText() + ", " + txt_nome.getText() + ").\n");
                 fileWriter.append(sexo + "(" + txt_nome.getText() + ").\n");
                 fileWriter.append(sexo_parente + "(" + nome_parente.getText() + ").\n");
-                
+
                 JOptionPane.showMessageDialog(this, "Arquivo Gravado com Sucesso !", "Aviso", JOptionPane.PLAIN_MESSAGE);
                 System.out.println("Gravado com sucesso.");
             }

@@ -1,3 +1,13 @@
-filho_de (Claudia, Guilherme).
-Homem(Guilherme).
-Mulher(Claudia).
+
+filho_de (, ).
+Mulher().
+Mulher().
+filho_de (, ).
+Mulher().
+Mulher().
+filho_de (, ).
+Mulher().
+Mulher().
+filho_de (, ).
+Mulher().
+Mulher().

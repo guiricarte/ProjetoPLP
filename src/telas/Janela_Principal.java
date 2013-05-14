@@ -33,6 +33,7 @@ public class Janela_Principal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         cad_banco = new javax.swing.JMenuItem();
+        cad_regras = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         About = new javax.swing.JMenuItem();
         Sair = new javax.swing.JMenuItem();
@@ -54,6 +55,14 @@ public class Janela_Principal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(cad_banco);
+
+        cad_regras.setText("Cadastrar Regra");
+        cad_regras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cad_regras(evt);
+            }
+        });
+        jMenu1.add(cad_regras);
 
         jMenuBar1.add(jMenu1);
 
@@ -112,6 +121,10 @@ public class Janela_Principal extends javax.swing.JFrame {
         new Cadastrar_Banco().setVisible(true);
     }//GEN-LAST:event_cad_banco
 
+    private void cad_regras(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cad_regras
+        new Cadastrar_Regras().setVisible(true);
+    }//GEN-LAST:event_cad_regras
+
     /**
      * @param args the command line arguments
      */
@@ -159,6 +172,7 @@ public class Janela_Principal extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JMenuItem cad_banco;
+    private javax.swing.JMenuItem cad_regras;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
