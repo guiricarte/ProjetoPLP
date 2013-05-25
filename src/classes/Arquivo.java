@@ -6,7 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Arquivo {
-    public static void ler(String verifica_sexo, String verifica_sexo_parente) {
+    public static boolean ler(String verifica) {
+        boolean flag = true;
         File arq = new File("src/files/banco_de_dados.txt");
  
         try {
@@ -26,18 +27,21 @@ public class Arquivo {
             // posicao do loop para a variavel linha.
             while ( ( linha = bufferedReader.readLine() ) != null) {
                 //Aqui imprimimos a linha
-                if (linha.equals(verifica_sexo) || linha.equals(verifica_sexo_parente)){
-                    System.out.println("Igual");
+                if (linha.equalsIgnoreCase(verifica)){
+                    flag = false ;
+                    fileReader.close();
+                    bufferedReader.close();
+                    return flag;
                 }else {
-                    System.out.println("Diferente");
+                    flag = true;
                 }
             }
- 
             //liberamos o fluxo dos objetos ou fechamos o arquivo
-            fileReader.close();
-            bufferedReader.close();
+
+            return flag;
         } catch (IOException e) {
         }
+        return false;
     }
 
 }

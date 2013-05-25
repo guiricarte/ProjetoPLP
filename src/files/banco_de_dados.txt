@@ -1,7 +1,7 @@
-
 mãe_de(guilherme, claudia).
 mulher(claudia).
 homem(guilherme).
 mãe_de(gabriele, claudia).
-mulher(claudia).
 mulher(gabriele).
+pai_de(guilherme, alexandre).
+homem(alexandre).

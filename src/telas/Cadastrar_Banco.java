@@ -251,11 +251,18 @@ public class Cadastrar_Banco extends javax.swing.JFrame {
                 try (BufferedWriter bufferFileWriter = new BufferedWriter(fileWriter)) {
                     fileWriter.append(predicado +  "(" + nome_parente.getText().toLowerCase() + ", " + txt_nome.getText().toLowerCase() + ").\n");
                     
-                    Arquivo.ler(sexo_da_pessoa, sexo_do_parente);
-                    
-                    fileWriter.append(sexo_da_pessoa + "\n");
-                    fileWriter.append(sexo_do_parente + "\n");
-
+                    if (Arquivo.ler(sexo_da_pessoa)==false){
+                        System.out.print("Ja existe uma pessoa com esse cadastros");
+                    }else{
+                        fileWriter.append(sexo_da_pessoa + "\n");    
+                    }
+                    if (Arquivo.ler(sexo_do_parente)==false){
+                        System.out.print("Ja existe um parente");
+                    }else{
+                        fileWriter.append(sexo_do_parente + "\n");    
+                    }                    
+                    //fileWriter.append(sexo_da_pessoa + "\n");
+                    //fileWriter.append(sexo_do_parente + "\n");
                     JOptionPane.showMessageDialog(this, "Arquivo gravado com sucesso !", "Aviso", JOptionPane.PLAIN_MESSAGE);
                     System.out.println("Gravado com sucesso.");
                 }
