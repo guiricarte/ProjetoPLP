@@ -4,6 +4,10 @@
  */
 package telas;
 
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Toolkit;
+
 /**
  *
  * @author Guilherme Ricarte
@@ -14,6 +18,10 @@ public class Janela_Principal extends javax.swing.JFrame {
      * Creates new form Janela_Principal
      */
     public Janela_Principal() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension frameSize = getSize();
+        setLocation(new Point((screenSize.width - frameSize.width) / 2,
+                              (screenSize.height - frameSize.width) / 2));
         initComponents();
     }
 
@@ -42,6 +50,8 @@ public class Janela_Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Paradigmas de Linguagem de Programação");
+        setAutoRequestFocus(false);
+        setBounds(new java.awt.Rectangle(450, 200, 0, 0));
         setName("principal");
         setResizable(false);
 
@@ -122,7 +132,7 @@ public class Janela_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_cad_banco
 
     private void cad_regras(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cad_regras
-        new Cadastrar_Regras().setVisible(true);
+        new Cadastrar_Regra().setVisible(true);
     }//GEN-LAST:event_cad_regras
 
     /**

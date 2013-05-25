@@ -12,7 +12,10 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="title" type="java.lang.String" value="Cadastrar Banco de Dados"/>
-    <Property name="locationByPlatform" type="boolean" value="true"/>
+    <Property name="autoRequestFocus" type="boolean" value="false"/>
+    <Property name="bounds" type="java.awt.Rectangle" editor="org.netbeans.beaninfo.editors.RectangleEditor">
+      <Rectangle value="[530, 250, 0, 0]"/>
+    </Property>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
@@ -49,7 +52,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jComboBox1" max="32767" attributes="0"/>
+                      <Component id="sel_parente" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -100,7 +103,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="sel_parente" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -169,6 +172,9 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="sex_masc">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Masculino"/>
       </Properties>
       <Events>
@@ -177,6 +183,9 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="sex_fem">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Feminino"/>
       </Properties>
       <Events>
@@ -185,6 +194,9 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="sex_parente_masc">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup2"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Masculino"/>
       </Properties>
       <Events>
@@ -193,24 +205,21 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="sex_parente_fem">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup2"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Feminino"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sex_parente_fem"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="sel_parente">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="8">
-            <StringItem index="0" value="Filha de"/>
-            <StringItem index="1" value="Filho de"/>
-            <StringItem index="2" value="Irm&#xe3; de"/>
-            <StringItem index="3" value="Irm&#xe3;o de"/>
-            <StringItem index="4" value="Pai de"/>
-            <StringItem index="5" value="M&#xe3;e de"/>
-            <StringItem index="6" value="Av&#xf3; de"/>
-            <StringItem index="7" value="Av&#xf4; de"/>
+          <StringArray count="2">
+            <StringItem index="0" value="Pai de"/>
+            <StringItem index="1" value="M&#xe3;e de"/>
           </StringArray>
         </Property>
       </Properties>

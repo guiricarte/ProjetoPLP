@@ -1,13 +1,7 @@
 
-filho_de (, ).
-Mulher().
-Mulher().
-filho_de (, ).
-Mulher().
-Mulher().
-filho_de (, ).
-Mulher().
-Mulher().
-filho_de (, ).
-Mulher().
-Mulher().
+mãe_de(guilherme, claudia).
+mulher(claudia).
+homem(guilherme).
+mãe_de(gabriele, claudia).
+mulher(claudia).
+mulher(gabriele).

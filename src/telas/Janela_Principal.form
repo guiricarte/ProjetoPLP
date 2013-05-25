@@ -71,6 +71,10 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="Paradigmas de Linguagem de Programa&#xe7;&#xe3;o"/>
+    <Property name="autoRequestFocus" type="boolean" value="false"/>
+    <Property name="bounds" type="java.awt.Rectangle" editor="org.netbeans.beaninfo.editors.RectangleEditor">
+      <Rectangle value="[450, 200, 0, 0]"/>
+    </Property>
     <Property name="name" type="java.lang.String" value="principal"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>

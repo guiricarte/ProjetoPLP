@@ -1,17 +1,27 @@
 package telas;
 
+import classes.Arquivo;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 public class Cadastrar_Banco extends javax.swing.JFrame {
     private String sexo;
     private String sexo_parente;
+    private String predicado;
     /**
      * Creates new form Cadastrar_Banco
      */
     public Cadastrar_Banco() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension frameSize = getSize();
+        setLocation(new Point((screenSize.width - frameSize.width) / 2,
+                              (screenSize.height - frameSize.width) / 2));
         initComponents();
     }
 
@@ -33,13 +43,14 @@ public class Cadastrar_Banco extends javax.swing.JFrame {
         sex_fem = new javax.swing.JRadioButton();
         sex_parente_masc = new javax.swing.JRadioButton();
         sex_parente_fem = new javax.swing.JRadioButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        sel_parente = new javax.swing.JComboBox();
         Cadastrar = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastrar Banco de Dados");
-        setLocationByPlatform(true);
+        setAutoRequestFocus(false);
+        setBounds(new java.awt.Rectangle(530, 250, 0, 0));
         setResizable(false);
 
         jLabel1.setText("Nome:");
@@ -67,6 +78,7 @@ public class Cadastrar_Banco extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(sex_masc);
         sex_masc.setText("Masculino");
         sex_masc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,6 +86,7 @@ public class Cadastrar_Banco extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(sex_fem);
         sex_fem.setText("Feminino");
         sex_fem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,6 +94,7 @@ public class Cadastrar_Banco extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup2.add(sex_parente_masc);
         sex_parente_masc.setText("Masculino");
         sex_parente_masc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +102,7 @@ public class Cadastrar_Banco extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup2.add(sex_parente_fem);
         sex_parente_fem.setText("Feminino");
         sex_parente_fem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,8 +110,8 @@ public class Cadastrar_Banco extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Filha de", "Filho de", "Irmã de", "Irmão de", "Pai de", "Mãe de", "Avó de", "Avô de" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        sel_parente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pai de", "Mãe de" }));
+        sel_parente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sel_parente(evt);
             }
@@ -134,7 +149,7 @@ public class Cadastrar_Banco extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(sel_parente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -174,7 +189,7 @@ public class Cadastrar_Banco extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sel_parente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -195,11 +210,11 @@ public class Cadastrar_Banco extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_nome(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nome
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txt_nome
 
     private void sel_parente(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sel_parente
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_sel_parente
 
     private void cancelar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelar
@@ -208,53 +223,68 @@ public class Cadastrar_Banco extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelar
 
     private void cadastrar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrar
-        if(sex_masc.isSelected()){
-            sexo = "Homem";
-        }else{
-            sexo = "Mulher";
-        }
-
-        if(sex_parente_masc.isSelected()){
-            sexo_parente = "Homem";
-        }else{
-            sexo_parente = "Mulher";
-        }
-
-        String arquivo = "src/files/banco_de_dados.txt";       
-        File file = new File(arquivo);
-        FileWriter fileWriter;
-        try {
-            fileWriter = new FileWriter(file,true);
-            try (BufferedWriter bufferFileWriter = new BufferedWriter(fileWriter)) {
-                fileWriter.append("filho_de (" + nome_parente.getText() + ", " + txt_nome.getText() + ").\n");
-                fileWriter.append(sexo + "(" + txt_nome.getText() + ").\n");
-                fileWriter.append(sexo_parente + "(" + nome_parente.getText() + ").\n");
-
-                JOptionPane.showMessageDialog(this, "Arquivo Gravado com Sucesso !", "Aviso", JOptionPane.PLAIN_MESSAGE);
-                System.out.println("Gravado com sucesso.");
+        if ((!(txt_nome.getText().isEmpty() && nome_parente.getText().isEmpty())) 
+                && (!(!sex_masc.isSelected() && (!sex_fem.isSelected())))
+                && (!(!sex_parente_masc.isSelected() && (!sex_parente_fem.isSelected())))){
+        
+            if(sex_masc.isSelected()){
+                sexo = "homem";
+            }else{
+                sexo = "mulher";
             }
-        } catch (IOException ex) {
-            Logger.getLogger(Cadastrar_Banco.class.getName()).log(Level.SEVERE, null, ex);
+
+            if(sex_parente_masc.isSelected()){
+                sexo_parente = "homem";
+            }else{
+                sexo_parente = "mulher";
+            }
+            
+            predicado = sel_parente.getSelectedItem().toString().replace(" ", "_").toLowerCase();
+            String sexo_da_pessoa = sexo + "(" + txt_nome.getText().toLowerCase() + ").";
+            String sexo_do_parente = sexo_parente + "(" + nome_parente.getText().toLowerCase() + ").";
+            
+            String arquivo = "src/files/banco_de_dados.txt";       
+            File file = new File(arquivo);
+            FileWriter fileWriter;
+            try {
+                fileWriter = new FileWriter(file,true);
+                try (BufferedWriter bufferFileWriter = new BufferedWriter(fileWriter)) {
+                    fileWriter.append(predicado +  "(" + nome_parente.getText().toLowerCase() + ", " + txt_nome.getText().toLowerCase() + ").\n");
+                    
+                    Arquivo.ler(sexo_da_pessoa, sexo_do_parente);
+                    
+                    fileWriter.append(sexo_da_pessoa + "\n");
+                    fileWriter.append(sexo_do_parente + "\n");
+
+                    JOptionPane.showMessageDialog(this, "Arquivo gravado com sucesso !", "Aviso", JOptionPane.PLAIN_MESSAGE);
+                    System.out.println("Gravado com sucesso.");
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Cadastrar_Banco.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Campo inválido ou vázio, por favor verifique !", "Erro", JOptionPane.PLAIN_MESSAGE);
         }
+       
     }//GEN-LAST:event_cadastrar
     private void nome_parente(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome_parente
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_nome_parente
 
     private void sex_parente_masc(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sex_parente_masc
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_sex_parente_masc
 
     private void sex_parente_fem(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sex_parente_fem
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_sex_parente_fem
 
     private void sex_masc(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sex_masc
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_sex_masc
 
     private void sex_fem(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sex_fem
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_sex_fem
 
     /**
@@ -304,7 +334,6 @@ public class Cadastrar_Banco extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JButton cancelar;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -312,6 +341,7 @@ public class Cadastrar_Banco extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField nome_parente;
+    private javax.swing.JComboBox sel_parente;
     private javax.swing.JRadioButton sex_fem;
     private javax.swing.JRadioButton sex_masc;
     private javax.swing.JRadioButton sex_parente_fem;
