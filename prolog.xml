@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<prolog>
+	<parente>
+		<relacao pessoa="mateus"/>
+		<relacao irmao="junior"/>
+	</parente>
+	<parente>
+		<relacao pessoa="mateus"/>
+		<relacao irmao="sara"/>
+	</parente>
+	
+</prolog>
+	
