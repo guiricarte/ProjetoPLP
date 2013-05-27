@@ -47,7 +47,7 @@ public class Janela_Principal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         cad_banco = new javax.swing.JMenuItem();
         cad_regras = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        perguntar = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         About = new javax.swing.JMenuItem();
         Sair = new javax.swing.JMenuItem();
@@ -80,15 +80,20 @@ public class Janela_Principal extends javax.swing.JFrame {
         });
         jMenu1.add(cad_regras);
 
-        jMenuItem2.setText("Perguntar?");
-        jMenu1.add(jMenuItem2);
+        perguntar.setText("Perguntar?");
+        perguntar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                perguntar(evt);
+            }
+        });
+        jMenu1.add(perguntar);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Ajuda");
         jMenu2.setFont(new java.awt.Font("Calibri", 1, 13)); // NOI18N
 
-        About.setText("About");
+        About.setText("Sobre");
         About.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 About(evt);
@@ -120,9 +125,9 @@ public class Janela_Principal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(140, 140, 140)
+                .addGap(169, 169, 169)
                 .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
 
         pack();
@@ -155,6 +160,22 @@ public class Janela_Principal extends javax.swing.JFrame {
         } catch (IOException e) {
         }
     }//GEN-LAST:event_cad_regras
+
+    private void perguntar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perguntar
+        File arq = new File("src/files/banco_de_dados.pro");
+        try {
+            FileReader fileReader = new FileReader(arq);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String linha = "";
+            if((linha = bufferedReader.readLine()) == null) {
+                    JOptionPane.showMessageDialog(this, "Arquivo de banco de dados vazio ou invalido, por favor verifique !", "Aviso", JOptionPane.PLAIN_MESSAGE);
+            }else{
+                new Perguntar().setVisible(true);   
+            }
+        } catch (IOException e) {
+        }   
+    }//GEN-LAST:event_perguntar
 
     /**
      * @param args the command line arguments
@@ -209,6 +230,6 @@ public class Janela_Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem perguntar;
     // End of variables declaration//GEN-END:variables
 }

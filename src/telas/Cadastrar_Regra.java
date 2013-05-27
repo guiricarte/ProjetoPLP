@@ -4,6 +4,15 @@
  */
 package telas;
 
+import classes.Arquivo;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Guilherme Ricarte
@@ -29,11 +38,12 @@ public class Cadastrar_Regra extends javax.swing.JFrame {
         txt_regra = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        cadastrar = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastrar Regra");
+        setBounds(new java.awt.Rectangle(530, 250, 0, 0));
 
         txt_regra.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txt_regra.addActionListener(new java.awt.event.ActionListener() {
@@ -47,10 +57,10 @@ public class Cadastrar_Regra extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Preencha o campo abaixo e cadastre-se:");
 
-        jButton1.setText("Cadastrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        cadastrar.setText("Cadastrar");
+        cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                cadastrar(evt);
             }
         });
 
@@ -81,7 +91,7 @@ public class Cadastrar_Regra extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(cancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(cadastrar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -95,7 +105,7 @@ public class Cadastrar_Regra extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(cadastrar)
                     .addComponent(cancelar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -107,9 +117,29 @@ public class Cadastrar_Regra extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_regra
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void cadastrar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrar
+        if (!(txt_regra.getText().isEmpty())){        
+            String arquivo = "src/files/banco_de_dados.pro";       
+            File file = new File(arquivo);
+            String regra = (txt_regra.getText());
+            FileWriter fileWriter;
+            try {
+                fileWriter = new FileWriter(file,true);
+                try (BufferedWriter bufferFileWriter = new BufferedWriter(fileWriter)) {
+                    if (Arquivo.ler(regra)==false){
+                        System.out.print("Ja existe uma regra igual cadastrada");
+                    }else{
+                        fileWriter.append(regra + "\n");    
+                    }
+                    JOptionPane.showMessageDialog(this, "Regra gravada com sucesso !", "Aviso", JOptionPane.PLAIN_MESSAGE);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Cadastrar_Banco.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Campo inválido ou vázio, por favor verifique !", "Erro", JOptionPane.PLAIN_MESSAGE);
+        }
+    }//GEN-LAST:event_cadastrar
 
     private void cancelar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelar
         setVisible(false);
@@ -158,8 +188,8 @@ public class Cadastrar_Regra extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cadastrar;
     private javax.swing.JButton cancelar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField txt_regra;
