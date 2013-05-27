@@ -243,14 +243,14 @@ public class Cadastrar_Banco extends javax.swing.JFrame {
             String sexo_da_pessoa = sexo + "(" + txt_nome.getText().toLowerCase() + ").";
             String sexo_do_parente = sexo_parente + "(" + nome_parente.getText().toLowerCase() + ").";
             
-            String arquivo = "src/files/banco_de_dados.txt";       
+            String arquivo = "src/files/banco_de_dados.pro";       
             File file = new File(arquivo);
             FileWriter fileWriter;
             try {
                 fileWriter = new FileWriter(file,true);
                 try (BufferedWriter bufferFileWriter = new BufferedWriter(fileWriter)) {
                     fileWriter.append(predicado +  "(" + nome_parente.getText().toLowerCase() + ", " + txt_nome.getText().toLowerCase() + ").\n");
-                    
+
                     if (Arquivo.ler(sexo_da_pessoa)==false){
                         System.out.print("Ja existe uma pessoa com esse cadastros");
                     }else{
@@ -261,8 +261,6 @@ public class Cadastrar_Banco extends javax.swing.JFrame {
                     }else{
                         fileWriter.append(sexo_do_parente + "\n");    
                     }                    
-                    //fileWriter.append(sexo_da_pessoa + "\n");
-                    //fileWriter.append(sexo_do_parente + "\n");
                     JOptionPane.showMessageDialog(this, "Arquivo gravado com sucesso !", "Aviso", JOptionPane.PLAIN_MESSAGE);
                     System.out.println("Gravado com sucesso.");
                 }

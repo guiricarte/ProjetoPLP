@@ -8,7 +8,7 @@ import java.io.IOException;
 public class Arquivo {
     public static boolean ler(String verifica) {
         boolean flag = true;
-        File arq = new File("src/files/banco_de_dados.txt");
+        File arq = new File("src/files/banco_de_dados.pro");
  
         try {
             //Indicamos o arquivo que será lido
@@ -43,5 +43,5 @@ public class Arquivo {
         }
         return false;
     }
-
+ 
 }

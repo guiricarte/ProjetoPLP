@@ -7,6 +7,11 @@ package telas;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,6 +47,7 @@ public class Janela_Principal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         cad_banco = new javax.swing.JMenuItem();
         cad_regras = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         About = new javax.swing.JMenuItem();
         Sair = new javax.swing.JMenuItem();
@@ -73,6 +79,9 @@ public class Janela_Principal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(cad_regras);
+
+        jMenuItem2.setText("Perguntar?");
+        jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
 
@@ -132,7 +141,19 @@ public class Janela_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_cad_banco
 
     private void cad_regras(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cad_regras
-        new Cadastrar_Regra().setVisible(true);
+        File arq = new File("src/files/banco_de_dados.pro");
+        try {
+            FileReader fileReader = new FileReader(arq);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String linha = "";
+            if((linha = bufferedReader.readLine()) == null) {
+                    JOptionPane.showMessageDialog(this, "Arquivo de banco de dados vazio ou invalido, por favor verifique !", "Aviso", JOptionPane.PLAIN_MESSAGE);
+            }else{
+                new Cadastrar_Regra().setVisible(true);   
+            }
+        } catch (IOException e) {
+        }
     }//GEN-LAST:event_cad_regras
 
     /**
@@ -188,5 +209,6 @@ public class Janela_Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,5 +3,10 @@ mulher(claudia).
 homem(guilherme).
 mãe_de(gabriele, claudia).
 mulher(gabriele).
-pai_de(guilherme, alexandre).
+mãe_de(mateus, claudia).
+homem(mateus).
+pai_de(mateus, alexandre).
 homem(alexandre).
+mãe_de(marilia, elina).
+mulher(elina).
+mulher(marilia).

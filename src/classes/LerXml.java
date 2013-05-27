@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Testes;
+package classes;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -12,11 +12,11 @@ import org.w3c.dom.*;
  *
  * @author MQS
  */
-public class TesteXml {
+public class LerXml {
         public static void main(String[] args) throws Exception{
             DocumentBuilderFactory doc = DocumentBuilderFactory.newInstance();
             DocumentBuilder parserDoc = doc.newDocumentBuilder();
-            Document docXml = parserDoc.parse("prolog.xml");
+            Document docXml = parserDoc.parse("src/files/resposta_prolog.xml");
             Element listaLinha, listaFatos, predicadoXml;
             NodeList listaTagLinha, listaPredicadoXml;
             NamedNodeMap predicados;
@@ -39,9 +39,5 @@ public class TesteXml {
             }catch(Exception e){
                 
             }
-           
-            
-            
         }
-    
 }
