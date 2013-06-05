@@ -119,7 +119,7 @@ public class Cadastrar_Regra extends javax.swing.JFrame {
 
     private void cadastrar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrar
         if (!(txt_regra.getText().isEmpty())){        
-            String arquivo = "src/files/banco_de_dados.pro";       
+            String arquivo = "src/files/banco_de_dados.pl";       
             File file = new File(arquivo);
             String regra = (txt_regra.getText());
             FileWriter fileWriter;

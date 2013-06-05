@@ -4,6 +4,12 @@
  */
 package telas;
 
+import java.io.File;
+import java.text.Normalizer;
+import jpl.Query;
+import java.util.Hashtable;
+import javax.swing.JOptionPane;
+import jpl.*;
 /**
  *
  * @author Guilherme Ricarte
@@ -26,40 +32,41 @@ public class Perguntar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        prim_pessoa = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        pessoa = new javax.swing.JTextField();
+        perguntar = new javax.swing.JButton();
+        cancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         sel_parentesco = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        seg_pessoa = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Perguntar?");
         setBounds(new java.awt.Rectangle(530, 250, 0, 0));
 
-        prim_pessoa.addActionListener(new java.awt.event.ActionListener() {
+        pessoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prim_pessoa(evt);
+                pessoa(evt);
             }
         });
 
-        jButton1.setText("Perguntar");
-
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        perguntar.setText("Perguntar");
+        perguntar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                perguntar(evt);
             }
         });
 
-        jLabel1.setText("1º Pessoa:");
+        cancelar.setText("Cancelar");
+        cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelar(evt);
+            }
+        });
 
-        sel_parentesco.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Filho de", "Irmão de" }));
+        jLabel1.setText("Pessoa:");
+
+        sel_parentesco.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Irmãs de", "Irmãos de", "Avós de", "Avôs de" }));
         sel_parentesco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sel_parentesco(evt);
@@ -68,22 +75,8 @@ public class Perguntar extends javax.swing.JFrame {
 
         jLabel3.setText("Parentesco:");
 
-        jLabel4.setText("2º Pessoa:");
-
-        seg_pessoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seg_pessoa(evt);
-            }
-        });
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Preencha as informações necessarias: ");
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel7.setText("Para fazer uma pergunta genérica, basta ");
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel8.setText("deixar o campo 2º pessoa vazio.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -92,27 +85,23 @@ public class Perguntar extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel7)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(seg_pessoa))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sel_parentesco, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pessoa, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(prim_pessoa))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(sel_parentesco, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jButton2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton1)))
-                    .addComponent(jLabel8))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(cancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(perguntar)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,45 +110,74 @@ public class Perguntar extends javax.swing.JFrame {
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(prim_pessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(sel_parentesco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(sel_parentesco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(seg_pessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(perguntar)
+                    .addComponent(cancelar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void prim_pessoa(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prim_pessoa
+    public static String removeAcentos(String str) {
+        str = Normalizer.normalize(str, Normalizer.Form.NFD);
+        str = str.replaceAll("[^\\p{ASCII}]", "");
+        return str;
+    }
+    private void pessoa(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pessoa
         // TODO add your handling code here:
-    }//GEN-LAST:event_prim_pessoa
+    }//GEN-LAST:event_pessoa
 
     private void sel_parentesco(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sel_parentesco
         // TODO add your handling code here:
     }//GEN-LAST:event_sel_parentesco
 
-    private void seg_pessoa(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seg_pessoa
-        // TODO add your handling code here:
-    }//GEN-LAST:event_seg_pessoa
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void cancelar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelar
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_cancelar
+
+    private void perguntar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perguntar
+        new File("src/files/resposta_prolog.xml").delete();
+        if (!pessoa.getText().isEmpty()) {
+            String t1 = "consult('src/files/banco_de_dados.pl')";
+            Query q1 = new Query(t1);
+            q1.hasSolution();
+            String escolha_predicado = removeAcentos(sel_parentesco.getSelectedItem().toString().toLowerCase().replace(" ", "_").toLowerCase());
+            String t4;
+            Query q4 = null;
+            String arquivo = "('C:/Users/Guilherme Ricarte/Documents/GitHub/ProjetoPLP/src/files/resposta_prolog.xml'";
+            switch(escolha_predicado) {
+                case "irmaos_de":
+                    t4 = "cria_irmaos_de" + arquivo + "," + this.pessoa.getText().trim() + ",Y).";
+                    q4 = new Query(t4); 
+                    break;
+                case "irmas_de":
+                    t4 = "cria_irmas_de" + arquivo + "," + this.pessoa.getText().trim() + ",Y).";
+                    q4 = new Query(t4); 
+                    break;
+                case "avos_de":
+                    t4 = "cria_avos_de" + arquivo + "," + this.pessoa.getText().trim() + ",Y).";
+                    q4 = new Query(t4); 
+                    break;
+                case "avohs_de":
+                    t4 = "cria_avohs_de" + arquivo + "," + this.pessoa.getText().trim() + ",Y).";
+                    q4 = new Query(t4); 
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(this, "ERRO, por favor verifique !", "Erro", JOptionPane.PLAIN_MESSAGE);
+
+            }
+            while ( q4.hasMoreSolutions() ){
+                java.util.Hashtable s4= q4.nextSolution();
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Campo inválido ou vázio, por favor verifique !", "Erro", JOptionPane.PLAIN_MESSAGE);
+        }
+    }//GEN-LAST:event_perguntar
 
     /**
      * @param args the command line arguments
@@ -203,16 +221,12 @@ public class Perguntar extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton cancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField prim_pessoa;
-    private javax.swing.JTextField seg_pessoa;
+    private javax.swing.JButton perguntar;
+    private javax.swing.JTextField pessoa;
     private javax.swing.JComboBox sel_parentesco;
     // End of variables declaration//GEN-END:variables
 }

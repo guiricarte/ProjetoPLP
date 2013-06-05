@@ -146,7 +146,7 @@ public class Janela_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_cad_banco
 
     private void cad_regras(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cad_regras
-        File arq = new File("src/files/banco_de_dados.pro");
+        File arq = new File("src/files/banco_de_dados.pl");
         try {
             FileReader fileReader = new FileReader(arq);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -162,7 +162,7 @@ public class Janela_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_cad_regras
 
     private void perguntar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perguntar
-        File arq = new File("src/files/banco_de_dados.pro");
+        File arq = new File("src/files/banco_de_dados.pl");
         try {
             FileReader fileReader = new FileReader(arq);
             BufferedReader bufferedReader = new BufferedReader(fileReader);

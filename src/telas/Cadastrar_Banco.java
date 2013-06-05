@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.io.*;
+import java.text.Normalizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -13,7 +14,6 @@ import javax.swing.JOptionPane;
 public class Cadastrar_Banco extends javax.swing.JFrame {
     private String sexo;
     private String sexo_parente;
-    private String predicado;
     /**
      * Creates new form Cadastrar_Banco
      */
@@ -208,7 +208,11 @@ public class Cadastrar_Banco extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public static String removeAcentos(String str) {
+        str = Normalizer.normalize(str, Normalizer.Form.NFD);
+        str = str.replaceAll("[^\\p{ASCII}]", "");
+        return str;
+    }
     private void txt_nome(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nome
 
     }//GEN-LAST:event_txt_nome
@@ -239,17 +243,18 @@ public class Cadastrar_Banco extends javax.swing.JFrame {
                 sexo_parente = "mulher";
             }
             
-            predicado = sel_parente.getSelectedItem().toString().replace(" ", "_").toLowerCase();
-            String sexo_da_pessoa = sexo + "(" + txt_nome.getText().toLowerCase() + ").";
-            String sexo_do_parente = sexo_parente + "(" + nome_parente.getText().toLowerCase() + ").";
+            //predicado = sel_parente.getSelectedItem().toString().toLowerCase().replace(" ", "_").toLowerCase();
+            String predicado = removeAcentos(sel_parente.getSelectedItem().toString().toLowerCase().replace(" ", "_").toLowerCase());
+            String sexo_da_pessoa = sexo + "(" + removeAcentos(txt_nome.getText().toLowerCase()) + ").";
+            String sexo_do_parente = sexo_parente + "(" + removeAcentos(nome_parente.getText().toLowerCase()) + ").";
             
-            String arquivo = "src/files/banco_de_dados.pro";       
+            String arquivo = "src/files/banco_de_dados.pl";       
             File file = new File(arquivo);
             FileWriter fileWriter;
             try {
                 fileWriter = new FileWriter(file,true);
                 try (BufferedWriter bufferFileWriter = new BufferedWriter(fileWriter)) {
-                    fileWriter.append(predicado +  "(" + nome_parente.getText().toLowerCase() + ", " + txt_nome.getText().toLowerCase() + ").\n");
+                    fileWriter.append(predicado +  "(" + removeAcentos(txt_nome.getText().toLowerCase() + ", " + nome_parente.getText().toLowerCase()) + ").\n");
 
                     if (Arquivo.ler(sexo_da_pessoa)==false){
                         System.out.print("Ja existe uma pessoa/parente com esse sexo cadastrado\n");
